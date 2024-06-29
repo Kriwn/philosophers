@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 19:58:25 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/06/27 20:39:29 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/06/29 14:23:54 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	del_mutex_fork(t_program *data)
 	i = 0;
 	while (i < data->max_philo)
 	{
+		// if (data->fork[i] != NULL)// ---> need to check
 		if (pthread_mutex_destroy(&data->fork[i]) != 0)
 			ft_error(data, "cannot destroy mutex\n");
 		i++;

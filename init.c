@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:04:41 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/06/27 21:01:57 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/06/29 13:58:22 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ static void	init_philo(t_program *data,t_program **temp)
 
 static int	allocate_data(t_program *data)
 {
-	data->fork = ft_calloc(sizeof(pthread_mutex_t), data->max_philo);
+	data->fork = malloc(sizeof(pthread_mutex_t) * data->max_philo);
 	if (!data->fork)
 		return (0);
-	data->philo = ft_calloc(sizeof(t_philo), data->max_philo);
+	data->philo = malloc(sizeof(t_philo) * data->max_philo);
 	if (!data->philo)
 		return (0);
-	data->print_lock = ft_calloc(sizeof(pthread_mutex_t), 1);
+	data->print_lock = malloc(sizeof(pthread_mutex_t) * 1);
 	if (!data->print_lock)
 		return (0);
 	return (1);

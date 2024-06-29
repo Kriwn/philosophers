@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:01:00 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/06/29 13:39:28 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/06/29 15:29:17 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	eat(t_philo *philo)
 		pthread_mutex_lock(philo->lfork);
 	}
 	print_report(philo, "has take a fork");
-	print_report(philo,"is eatimng");
+	print_report(philo,"is eating");
 	philo->last_time_eat = get_current_time();
 	ft_sleep(philo, philo->rule->time_eat);
 	pthread_mutex_unlock(philo->lfork);
@@ -74,15 +74,20 @@ void	routine(void *data)
 	count = 0;
 	rule = philo->rule;
 	philo->last_time_eat = get_current_time();
+	if (rule->max_philo == 1)
+	{
+		ft_sleep(philo, rule->time_die);
+		return ;
+	}
 	while (philo->status)
 	{
 		print_report(philo, "is thinking");
 		ft_sleep(philo, rule->time_think);
 		eat(philo);
-		print_report(philo, "is sleeping");
-		ft_sleep(philo, rule->time_sleep);
+		count++;
 		if (count == rule->max_eat)
 			return ;
-		count++;
+		print_report(philo, "is sleeping");
+		ft_sleep(philo, rule->time_sleep);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:10:02 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/06/27 21:11:29 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/06/29 15:30:52 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void		check_philo_die(t_program *data);
 size_t	ft_strlen(const char *s);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
-int		ft_atol(const char *nptr);
+long		ft_atol(const char *nptr);
 
 
 //-----------utils2.c-----------//

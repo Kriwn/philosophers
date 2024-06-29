@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:47:01 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/06/24 20:07:29 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/06/29 14:25:42 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,32 +24,7 @@ size_t	ft_strlen(const char *s)
 	return (count);
 }
 
-void	ft_bzero(void *s, size_t n)
-{
-	size_t			i;
-	unsigned char	*str;
-
-	str = (unsigned char *)s;
-	i = 0;
-	while (i < n)
-	{
-		str[i] = '\0';
-		i ++;
-	}
-}
-
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	void	*ptr;
-
-	ptr = malloc(nmemb * size);
-	if (!(ptr))
-		return (NULL);
-	ft_bzero (ptr, nmemb * size);
-	return (ptr);
-}
-
-int	ft_atol(const char *nptr)
+long	ft_atol(const char *nptr)
 {
 	long		ans;
 	long		pos;
