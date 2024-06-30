@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:01:00 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/06/29 15:29:17 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/06/30 16:34:17 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	check_die(t_philo	*philo)
 	}
 }
 
-void		check_philo_die(t_program *data)
+void		check_philo_die(t_program *data) // not work
 {
 	int	i;
 
@@ -63,7 +63,6 @@ void		check_philo_die(t_program *data)
 	}
 }
 
-
 void	routine(void *data)
 {
 	t_philo 	*philo;
@@ -73,13 +72,15 @@ void	routine(void *data)
 	philo = (t_philo *)data;
 	count = 0;
 	rule = philo->rule;
+	if (philo->id % 2 == 0)
+		usleep(10);
 	philo->last_time_eat = get_current_time();
 	if (rule->max_philo == 1)
 	{
 		ft_sleep(philo, rule->time_die);
 		return ;
 	}
-	while (philo->status)
+	while (*philo->status != 0)
 	{
 		print_report(philo, "is thinking");
 		ft_sleep(philo, rule->time_think);

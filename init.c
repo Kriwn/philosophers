@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:04:41 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/06/29 13:58:22 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/06/30 16:44:40 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	mutex_fork(t_program *data)
 	int	i;
 
 	i = 0;
+	// valgrind error on broke
 	while (i < data->max_philo)
 	{
 		if (pthread_mutex_init(&data->fork[i], NULL) != 0)
@@ -75,7 +76,6 @@ void	init_data(t_program *data,int argc,char **argv)
 	data->status = 1;
 	if (data->start_time == -1)
 		ft_error(data, "gettimeofday error\n");
-
 	data->max_philo = ft_atol(argv[1]);
 	data->time_die = ft_atol(argv[2]);
 	data->time_eat = ft_atol(argv[3]);
