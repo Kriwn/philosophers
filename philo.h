@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:10:02 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/06/29 15:30:52 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/07/06 22:20:02 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,6 @@ typedef struct philo
 	size_t			last_time_eat;
 	int				count;
 	int				time;
-	size_t			time_eat;
-	size_t			time_die;
-	size_t			time_sleep;
-	size_t			time_think;
-
 }t_philo;
 
 typedef	struct program
@@ -48,7 +43,6 @@ typedef	struct program
 	size_t			time_eat;
 	size_t			time_die;
 	size_t			time_sleep;
-	size_t			time_think;
 	int				max_eat;
 	size_t			start_time;
 	int				max_philo;

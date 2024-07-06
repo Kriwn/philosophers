@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:34:53 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/06/29 15:35:44 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/07/06 22:19:16 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ int	start_philo(t_program *data)
 
 }
 
-// ./philo num timedie timeeat timesleep timethink [number of time to eat](optional)
+// ./philo num timedie timeeat timesleep [number of time to eat](optional)
 int	main(int argc, char **argv)
 {
 	t_program	data;
 	int			i;
 
 	i = 0;
-	if ((argc != 6 && argc != 7 ) || !check(argv))
+	if ((argc != 5 && argc != 6 ) || !check(argv))
 		return (0);
 	init_data(&data, argc, argv);
 	if (start_philo(&data) == 0)

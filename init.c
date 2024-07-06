@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:04:41 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/06/30 16:44:40 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/07/06 22:21:08 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	init_data(t_program *data,int argc,char **argv)
 	data->time_die = ft_atol(argv[2]);
 	data->time_eat = ft_atol(argv[3]);
 	data->time_sleep = ft_atol(argv[4]);
-	data->time_think = ft_atol(argv[5]);
 	if (argc == 7)
 		data->max_eat = ft_atol(argv[6]);
 	else
