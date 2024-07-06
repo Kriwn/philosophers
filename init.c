@@ -22,9 +22,10 @@ static void	init_philo(t_program *data,t_program **temp)
 		data->philo[i].id = i;
 		data->philo[i].rfork = &data->fork[i];
 		data->philo[i].print_lock = data->print_lock;
-		data->philo[i].last_time_eat = 0;
+		data->philo[i].last_time_eat = get_current_time();
 		data->philo[i].status = &data->status;
 		data->philo[i].rule = data;
+		data->philo[i].rule->start_time = get_current_time();
 		if (data->max_philo == 1)
 		{
 			data->philo[i].rfork = NULL;
@@ -80,8 +81,11 @@ void	init_data(t_program *data,int argc,char **argv)
 	data->time_die = ft_atol(argv[2]);
 	data->time_eat = ft_atol(argv[3]);
 	data->time_sleep = ft_atol(argv[4]);
-	if (argc == 7)
-		data->max_eat = ft_atol(argv[6]);
+	if (argc == 6)
+	{
+		printf("Test\n");
+		data->max_eat = ft_atol(argv[5]);
+	}
 	else
 		data->max_eat = -1;
 	if (!allocate_data(data))

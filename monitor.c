@@ -88,7 +88,10 @@ void	routine(void *data)
 		eat(philo);
 		count++;
 		if (count == rule->max_eat)
+		{
+			printf("cut\n");
 			return ;
+		}
 		print_report(philo, "is sleeping");
 		ft_sleep(philo, rule->time_sleep);
 	}

@@ -21,6 +21,7 @@ int	start_philo(t_program *data)
 	{
 		if (pthread_create(&data->philo[i].thread, NULL,(void *)routine,(void *)(&(data->philo[i]))) != 0)
 			return (0);
+		dprintf(2, "adsadasdas\n");
 		i++;
 	}
 	return (1);
