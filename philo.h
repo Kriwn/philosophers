@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:10:02 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/07/06 22:20:02 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:24:29 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ typedef struct philo
 	pthread_mutex_t *print_lock;
 	pthread_mutex_t	*rfork;
 	pthread_mutex_t	*lfork;
-	struct program		*rule;
-	int				*status;
+	pthread_mutex_t	general;
+	struct program	*rule;
+	volatile int	*status;
 	pthread_t		thread;
 	size_t			last_time_eat;
 	int				count;
@@ -38,14 +39,16 @@ typedef	struct program
 {
 	pthread_mutex_t	*fork;
 	pthread_mutex_t *print_lock;
+	pthread_mutex_t *check_die;
 	t_philo			*philo;
-	int				status;
+	volatile int	status;
 	size_t			time_eat;
 	size_t			time_die;
 	size_t			time_sleep;
 	int				max_eat;
-	size_t			start_time;
+	ssize_t			start_time;
 	int				max_philo;
+	int				philo_full;
 }t_program;
 
 //-----------check.c------------//
@@ -58,9 +61,19 @@ void ft_error(t_program *data, char *str);
 //------------init.c------------//
 void	init_data(t_program *data,int argc,char **argv);
 
+//-----------moitor_finish.c----/
+void		check_philo_die(t_program *data);
+int	check_reach_max(t_program *data);
+
+
 //------------moitor.c----------//
 void	routine(void *data);
-void		check_philo_die(t_program *data);
+
+//------------mutex.c----------//
+void	set_time(t_philo *philo, size_t time);
+void	set_status(t_philo *philo, int status);
+int		check_end_rotine(t_program *program);
+void	increase_count(t_philo *philo);
 
 //------------utils.c-----------//
 size_t	ft_strlen(const char *s);

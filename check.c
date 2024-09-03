@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:46:28 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/06/29 13:52:06 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/08/31 09:21:07 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check(char	**argv)
 	i = 1;
 	while (argv[i])
 	{
-		if (!is_number(argv[i]) || ft_atol(argv[i]) >= INT_MAX || ft_atol(argv[i]) <= INT_MIN)
+		if (!is_number(argv[i]) || ft_atol(argv[i]) >= INT_MAX || ft_atol(argv[i]) <= 0)
 			return (0);
 		i++;
 	}

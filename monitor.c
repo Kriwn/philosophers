@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:01:00 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/07/06 22:39:17 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:30:19 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	eat(t_philo *philo)
 {
-	if (philo->status == 0)
-		return ;
+	// if (philo->status == 0)
+	// 	return ;
 	if ((philo->id) % 2 == 0)
 	{
 		pthread_mutex_lock(philo->lfork);
@@ -26,73 +26,51 @@ static void	eat(t_philo *philo)
 		pthread_mutex_lock(philo->rfork);
 		pthread_mutex_lock(philo->lfork);
 	}
-	print_report(philo, "has take a fork");
 	print_report(philo,"is eating");
-	philo->last_time_eat = get_current_time();
+	set_time(philo, get_current_time());
 	ft_sleep(philo, philo->rule->time_eat);
-	pthread_mutex_unlock(philo->lfork);
 	pthread_mutex_unlock(philo->rfork);
-	print_report(philo,"put back");
+	pthread_mutex_unlock(philo->lfork);
 }
 
-static void	check_die(t_philo	*philo)
+static	void	philo_think(t_philo *philo)
 {
-	if (diff_time(philo->last_time_eat, get_current_time()) > philo->rule->time_die)
-	{
-		pthread_mutex_lock(philo->print_lock);
-		if (*philo->status == 1)
-		{
-			printf("%ld no %d died\n", diff_time(philo->rule->start_time,get_current_time()), philo->id);
-			*philo->status = 0;
-		}
-		pthread_mutex_unlock(philo->print_lock);
-	}
+	print_report(philo,"is thinking");
 }
 
-void		check_philo_die(t_program *data) // not work
+static	void	philo_sleep(t_philo *philo)
 {
-	int	i;
+	print_report(philo, "is sleeping");
+	ft_sleep(philo, philo->rule->time_sleep);
+}
 
-	i = 0;
-	while (data->status == 1)
-	{
-		check_die(&data->philo[i]);
-		i++;
-		if (i == data->max_philo)
-			i = 0;
-	}
+static	void	single_philo(t_philo *philo)
+{
+	ft_sleep(philo,philo->rule->time_die);
+	set_status(philo, 0);
+	return ;
 }
 
 void	routine(void *data)
 {
 	t_philo 	*philo;
 	t_program	*rule;
-	int			count;
 	size_t		time;
 
 	philo = (t_philo *)data;
-	count = 0;
 	rule = philo->rule;
-	// if (philo->id % 2 == 0)
-	// 	usleep(10);
-	time = get_current_time();
-	philo->last_time_eat = time;
-	if (rule->max_philo == 1)
-	{
-		ft_sleep(philo, rule->time_die);
+	set_time(philo, get_current_time());
+	if (rule->max_eat == 0)
 		return ;
-	}
-	while (*philo->status != 0)
+	if (rule->max_philo == 1)
+		return (single_philo(philo));
+	if (philo->id % 2 == 0)
+		ft_sleep(philo,2);
+	while (check_end_rotine(philo->rule))
 	{
-		print_report(philo, "is thinking");
+		philo_think(philo);
 		eat(philo);
-		count++;
-		if (count == rule->max_eat)
-		{
-			printf("cut\n");
-			return ;
-		}
-		print_report(philo, "is sleeping");
-		ft_sleep(philo, rule->time_sleep);
+		// increase_count(philo);
+		philo_sleep(philo);
 	}
 }

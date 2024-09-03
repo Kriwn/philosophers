@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 12:02:13 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/06/30 16:23:31 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/08/24 09:42:24 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_sleep(t_philo *philo,size_t time)
 		return ;
 	while (difftime < time)
 	{
-		usleep(1);
+		usleep(100);
 		difftime = diff_time(philo->time, get_current_time());
 	}
 }
@@ -46,6 +46,6 @@ void	print_report(t_philo *philo, char *str)
 {
 	pthread_mutex_lock(philo->print_lock);
 	if (*philo->status)
-		printf("Time is %ld Philo no %d  %s\n",diff_time(philo->rule->start_time, get_current_time()),philo->id, str);
+		printf("%ld %d  %s\n",diff_time(philo->rule->start_time, get_current_time()),philo->id, str);
 	pthread_mutex_unlock(philo->print_lock);
 }

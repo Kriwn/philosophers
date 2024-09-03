@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:34:53 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/07/06 22:19:16 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/09/03 13:39:44 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,17 @@ int	start_philo(t_program *data)
 	{
 		if (pthread_create(&data->philo[i].thread, NULL,(void *)routine,(void *)(&(data->philo[i]))) != 0)
 			return (0);
-		dprintf(2, "adsadasdas\n");
 		i++;
 	}
 	return (1);
 
 }
+
+// void	observe_philo(t_program	* data)
+// {
+// 	check_philo_die(&data);
+// 	check_reach_max(&data);
+// }
 
 // ./philo num timedie timeeat timesleep [number of time to eat](optional)
 int	main(int argc, char **argv)
