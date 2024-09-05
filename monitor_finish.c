@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 09:29:09 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/09/05 14:18:48 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:27:49 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ int	check_all_philo_done(t_program *program)
 
 	i = 0;
 	done = 1;
+	if (program->max_eat == -1)
+		return (0);
 	pthread_mutex_lock(program->check_die);
 	while (i < program->max_philo)
 	{
