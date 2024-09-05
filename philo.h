@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:10:02 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/09/03 17:24:29 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:19:16 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef	struct program
 	int				max_eat;
 	ssize_t			start_time;
 	int				max_philo;
-	int				philo_full;
 }t_program;
 
 //-----------check.c------------//
@@ -63,7 +62,9 @@ void	init_data(t_program *data,int argc,char **argv);
 
 //-----------moitor_finish.c----/
 void		check_philo_die(t_program *data);
-int	check_reach_max(t_program *data);
+void	check_reach_max(t_program *data);
+int	check_all_philo_done(t_program *program);
+
 
 
 //------------moitor.c----------//
@@ -71,6 +72,7 @@ void	routine(void *data);
 
 //------------mutex.c----------//
 void	set_time(t_philo *philo, size_t time);
+void	set_eat_done(t_program	*data,int status);
 void	set_status(t_philo *philo, int status);
 int		check_end_rotine(t_program *program);
 void	increase_count(t_philo *philo);

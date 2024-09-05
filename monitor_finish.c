@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 09:29:09 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/09/03 17:30:46 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:18:48 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,34 +35,63 @@ void		check_philo_die(t_program *data)
 	int	i;
 
 	i = 0;
-	while (data->status == 1)
+	while (data->status)
 	{
 		pthread_mutex_lock(data->check_die);
 		check_die(&data->philo[i]);
 		pthread_mutex_unlock(data->check_die);
-		if (data->philo_full == data->max_eat)
-			set_status(&data->philo[0],0);
+		pthread_mutex_lock(data->check_die);
+		// check_reach_max(data);
+		pthread_mutex_unlock(data->check_die);
 		if (i == data->max_philo)
 			i = 0;
 	}
 }
 
 
-int	check_reach_max(t_program *data)
+// void	check_reach_max(t_program *data)
+// {
+// 	int	i;
+// 	int	count;
+
+// 	count	= 0;
+// 	i = 0;
+// 	if (data->max_eat == -1)
+// 		return ;
+// 	while (i < data->max_philo)
+// 	{
+// 		pthread_mutex_lock(&data->philo[i].general);
+// 		if (data->philo[i].count == data->max_eat)
+// 			count++;
+// 		pthread_mutex_unlock(&data->philo[i].general);
+// 		i++;
+// 	}
+// 	if (count == data->max_philo)
+// 	{
+// 		pthread_mutex_lock(data->print_lock);
+// 		printf("DONE\n");
+// 		pthread_mutex_unlock(data->print_lock);
+// 		set_eat_done(data,0);
+// 	}
+// }
+
+int	check_all_philo_done(t_program *program)
 {
 	int	i;
-	int	count;
+	int	done;
 
-	count	= 0;
 	i = 0;
-	if (data->max_eat == -1)
-		return (0);
-	while (i < data->max_philo)
+	done = 1;
+	pthread_mutex_lock(program->check_die);
+	while (i < program->max_philo)
 	{
-		if (data->philo[i].count == data->max_eat)
-			i++;
+		if (program->philo[i].count < program->max_eat)
+		{
+			done = 0;
+			break ;
+		}
+		i++;
 	}
-	if (i == data->max_philo)
-		return (1);
-	return (0);
+	pthread_mutex_unlock(program->check_die);
+	return done;
 }

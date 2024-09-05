@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:04:41 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/09/03 17:24:48 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/09/05 13:26:24 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	init_data(t_program *data,int argc,char **argv)
 
 	data->start_time = get_current_time();
 	data->status = 1;
-	data->philo_full = 0;
 	if (data->start_time == -1)
 		ft_error(data, "gettimeofday error\n");
 	data->max_philo = ft_atol(argv[1]);
