@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 19:58:25 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/08/04 13:21:29 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/11/12 18:20:51 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static void	del_mutex_fork(t_program *data)
 	{
 		if (pthread_mutex_destroy(&data->fork[i]) != 0)
 			ft_error(data, "cannot destroy fork mutex\n");
-		if (pthread_mutex_destroy(&data->philo[i].general) != 0)
-			ft_error(data, "cannot destroy general mutex\n");
+		// if (pthread_mutex_destroy(&data->philo[i].general) != 0)
+		// 	ft_error(data, "cannot destroy general mutex\n");
 		i++;
 	}
 	if (pthread_mutex_destroy(data->print_lock) != 0)

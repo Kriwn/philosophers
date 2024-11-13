@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:10:02 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/09/05 14:19:16 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/11/12 18:33:10 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct philo
 	pthread_mutex_t *print_lock;
 	pthread_mutex_t	*rfork;
 	pthread_mutex_t	*lfork;
-	pthread_mutex_t	general;
+	pthread_mutex_t	*general;
 	struct program	*rule;
 	volatile int	*status;
 	pthread_t		thread;
@@ -40,6 +40,7 @@ typedef	struct program
 	pthread_mutex_t	*fork;
 	pthread_mutex_t *print_lock;
 	pthread_mutex_t *check_die;
+	pthread_mutex_t	*general;
 	t_philo			*philo;
 	volatile int	status;
 	size_t			time_eat;

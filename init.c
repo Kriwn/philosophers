@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:04:41 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/09/05 13:26:24 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/11/12 18:33:20 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	init_philo(t_program *data)
 		data->philo[i].id = i;
 		data->philo[i].rfork = &data->fork[i];
 		data->philo[i].print_lock = data->print_lock;
+		data->philo[i].general = data->general;
 		data->philo[i].last_time_eat = get_current_time();
 		data->philo[i].count = 0;
 		data->philo[i].status = &data->status;
@@ -35,8 +36,8 @@ static void	init_philo(t_program *data)
 			data->philo[i].lfork = &data->fork[0];
 		else
 			data->philo[i].lfork = &data->fork[i+1];
-		if (pthread_mutex_init(&data->philo[i].general, NULL) != 0)
-			ft_error(data, "Mutex init error\n");
+		// if (pthread_mutex_init(&data->philo[i].general, NULL) != 0)
+		// 	ft_error(data, "Mutex init error\n");
 		i++;
 	}
 }
@@ -55,6 +56,9 @@ static int	allocate_data(t_program *data)
 	data->check_die = malloc(sizeof(pthread_mutex_t) * 1);
 	if (!data->check_die)
 		return (0);
+	data->general = malloc(sizeof(pthread_mutex_t) * 1);
+	if (!data->general)
+		return (0);
 	return (1);
 }
 
@@ -72,6 +76,8 @@ static void	mutex_fork(t_program *data)
 	if (pthread_mutex_init(data->print_lock, NULL) != 0)
 			ft_error(data, "Mutex init error\n");
 	if (pthread_mutex_init(data->check_die, NULL) != 0)
+			ft_error(data, "Mutex init error\n");
+	if (pthread_mutex_init(data->general, NULL) != 0)
 			ft_error(data, "Mutex init error\n");
 }
 
