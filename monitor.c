@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:01:00 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/11/13 12:54:20 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/11/15 20:08:56 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	eat(t_philo *philo)
 {
-	if (philo->count >= philo->rule->max_eat)
+	if (philo->count >= philo->rule->max_eat && philo->rule->max_eat != -1)
 		return ;
 	if ((philo->id) % 2 == 0)
 	{
@@ -35,19 +35,13 @@ static void	eat(t_philo *philo)
 
 static	void	philo_think(t_philo *philo)
 {
-	// pthread_mutex_lock(philo->general);
 	print_report(philo,"is thinking");
-	// pthread_mutex_unlock(philo->general);
-
 }
 
 static	void	philo_sleep(t_philo *philo)
 {
-	// pthread_mutex_lock(philo->general);
 	print_report(philo, "is sleeping");
 	ft_sleep(philo, philo->rule->time_sleep);
-	// pthread_mutex_unlock(philo->general);
-
 }
 
 static	void	single_philo(t_philo *philo)
@@ -80,7 +74,6 @@ void	routine(void *data)
 			break ;
 		increase_count(philo);
 		if (check_all_philo_done(rule))
-			//problem
 			set_eat_done(rule,0);
 		philo_sleep(philo);
 	}

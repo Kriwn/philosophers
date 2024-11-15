@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 09:29:09 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/11/13 12:55:33 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/11/15 20:06:31 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,33 +45,6 @@ void		check_philo_die(t_program *data)
 	}
 }
 
-
-// void	check_reach_max(t_program *data)
-// {
-// 	int	i;
-// 	int	count;
-
-// 	count	= 0;
-// 	i = 0;
-// 	if (data->max_eat == -1)
-// 		return ;
-// 	while (i < data->max_philo)
-// 	{
-// 		pthread_mutex_lock(&data->philo[i].general);
-// 		if (data->philo[i].count == data->max_eat)
-// 			count++;
-// 		pthread_mutex_unlock(&data->philo[i].general);
-// 		i++;
-// 	}
-// 	if (count == data->max_philo)
-// 	{
-// 		pthread_mutex_lock(data->print_lock);
-// 		printf("DONE\n");
-// 		pthread_mutex_unlock(data->print_lock);
-// 		set_eat_done(data,0);
-// 	}
-// }
-
 int	check_all_philo_done(t_program *program)
 {
 	int	i;
@@ -84,7 +57,6 @@ int	check_all_philo_done(t_program *program)
 	pthread_mutex_lock(program->check_die);
 	while (i < program->max_philo)
 	{
-		// data race here
 		pthread_mutex_lock(program->general);
 		if (program->philo[i].count < program->max_eat)
 		{

@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:04:41 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/11/12 18:33:20 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/11/15 20:07:23 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ static void	init_philo(t_program *data)
 			data->philo[i].lfork = &data->fork[0];
 		else
 			data->philo[i].lfork = &data->fork[i+1];
-		// if (pthread_mutex_init(&data->philo[i].general, NULL) != 0)
-		// 	ft_error(data, "Mutex init error\n");
 		i++;
 	}
 }

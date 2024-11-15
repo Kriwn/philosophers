@@ -7,8 +7,8 @@ OBJS  = $(SRCS:.c=.o)
 HEADER_FILE = push_swap.h
 
 CC = cc
-CFLAGS = 
-# CFLAGS = -g -fsanitize=thread
+# CFLAGS =
+CFLAGS = -g -fsanitize=thread
 # CFLAGS = -Wall -Wextra -Werror -Wunreachable-code
 
 all: $(NAME)

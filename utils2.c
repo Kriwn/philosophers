@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 12:02:13 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/11/13 12:56:52 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/11/15 20:05:24 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ size_t	get_current_time(void)
 
 long		diff_time(int x, int y)
 {
-	// printf("diff time %lu\n",get_current_time() - x);
 	return (y - x);
 }
 
@@ -44,8 +43,8 @@ void	ft_sleep(t_philo *philo,size_t time)
 
 void	print_report(t_philo *philo, char *str)
 {
-	// pthread_mutex_lock(philo->print_lock);
-	if (check_end_rotine(philo->rule)) 
+	pthread_mutex_lock(philo->print_lock);
+	if (check_end_rotine(philo->rule))
 		printf("%ld %d %s\n",diff_time(philo->rule->start_time, get_current_time()),philo->id, str);
-	// pthread_mutex_unlock(philo->print_lock);
+	pthread_mutex_unlock(philo->print_lock);
 }
