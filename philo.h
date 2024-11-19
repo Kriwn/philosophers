@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:10:02 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/11/12 18:33:10 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/11/18 00:03:35 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,14 @@ size_t	ft_strlen(const char *s);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 long		ft_atol(const char *nptr);
+long		diff_time(int x,int y);
 
 
 //-----------utils2.c-----------//
 size_t	get_current_time(void);
-long		diff_time(int x,int y);
 void	ft_sleep(t_philo *philo,size_t time);
 void	print_report(t_philo *philo, char *str);
+void	fork_up(t_philo *philo);
+void	fork_down(t_philo *philo);
 
 #endif

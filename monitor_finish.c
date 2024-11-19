@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 09:29:09 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/11/15 20:06:31 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/11/16 21:39:47 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static void	check_die(t_philo	*philo)
 	if (diff_time(philo->last_time_eat, get_current_time()) > philo->rule->time_die)
 	{
 		pthread_mutex_unlock(philo->general);
-		// pthread_mutex_lock(philo->print_lock);
+		pthread_mutex_lock(philo->print_lock);
 		if (*philo->status == 1)
 		{
 			printf("%ld %d died\n", diff_time(philo->rule->start_time,get_current_time()), philo->id);
 			set_status(philo, 0);
 		}
-		// pthread_mutex_unlock(philo->print_lock);
+		pthread_mutex_unlock(philo->print_lock);
 	}
 	else
 		pthread_mutex_unlock(philo->general);

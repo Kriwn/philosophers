@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 19:58:25 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/11/16 13:31:05 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/11/17 23:07:50 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ void	freeall(t_program *data)
 		free(data->philo);
 	if (data->print_lock)
 		free(data->print_lock);
+	if (data->check_die)
+		free(data->check_die);
+	if (data->general)
+		free(data->general);
 }
 
 void ft_error(t_program *data, char *str)

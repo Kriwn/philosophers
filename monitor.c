@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:01:00 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/11/15 20:08:56 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/11/18 00:34:22 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,11 @@ static void	eat(t_philo *philo)
 {
 	if (philo->count >= philo->rule->max_eat && philo->rule->max_eat != -1)
 		return ;
-	if ((philo->id) % 2 == 0)
-	{
-		pthread_mutex_lock(philo->lfork);
-		pthread_mutex_lock(philo->rfork);
-	}
-	else
-	{
-		pthread_mutex_lock(philo->rfork);
-		pthread_mutex_lock(philo->lfork);
-	}
+	fork_up(philo);
 	print_report(philo,"is eating");
 	set_time(philo, get_current_time());
 	ft_sleep(philo, philo->rule->time_eat);
-	pthread_mutex_unlock(philo->rfork);
-	pthread_mutex_unlock(philo->lfork);
+	fork_down(philo);
 }
 
 static	void	philo_think(t_philo *philo)
@@ -46,8 +36,11 @@ static	void	philo_sleep(t_philo *philo)
 
 static	void	single_philo(t_philo *philo)
 {
+	pthread_mutex_lock(philo->rfork);
+	print_report(philo,"has taken a fork");
 	ft_sleep(philo,philo->rule->time_die);
-	set_status(philo, 0);
+	// set_status(philo, 0);
+	pthread_mutex_unlock(philo->rfork);
 	return ;
 }
 

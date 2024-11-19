@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:04:41 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/11/15 20:07:23 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/11/18 00:34:37 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,7 @@ static void	init_philo(t_program *data)
 		data->philo[i].status = &data->status;
 		data->philo[i].rule = data;
 		if (data->max_philo == 1)
-		{
-			data->philo[i].rfork = NULL;
 			data->philo[i].lfork = NULL;
-		}
 		else if (i == data->max_philo - 1)
 			data->philo[i].lfork = &data->fork[0];
 		else

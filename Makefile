@@ -7,8 +7,8 @@ OBJS  = $(SRCS:.c=.o)
 HEADER_FILE = push_swap.h
 
 CC = cc
-# CFLAGS =
-CFLAGS = -g -fsanitize=thread
+CFLAGS = -g
+#CFLAGS = -g -fsanitize=thread
 # CFLAGS = -Wall -Wextra -Werror -Wunreachable-code
 
 all: $(NAME)
@@ -28,3 +28,5 @@ fclean:clean
 re: fclean all
 # --tool=helgrind
 .PHONY: all clean fclean re
+
+# 5 900 295 100 10

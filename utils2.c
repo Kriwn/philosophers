@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 12:02:13 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/11/15 20:05:24 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/11/18 00:20:44 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ size_t	get_current_time(void)
 	if (gettimeofday(&time, NULL) == -1)
 		return (-1);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
-}
-
-long		diff_time(int x, int y)
-{
-	return (y - x);
 }
 
 void	ft_sleep(t_philo *philo,size_t time)
@@ -47,4 +42,38 @@ void	print_report(t_philo *philo, char *str)
 	if (check_end_rotine(philo->rule))
 		printf("%ld %d %s\n",diff_time(philo->rule->start_time, get_current_time()),philo->id, str);
 	pthread_mutex_unlock(philo->print_lock);
+}
+
+void	fork_up(t_philo *philo)
+{
+	// if ((philo->id) % 2 == 0)
+	// {
+		pthread_mutex_lock(philo->lfork);
+		print_report(philo,"has taken a fork");
+		pthread_mutex_lock(philo->rfork);
+		print_report(philo,"has taken a fork");
+
+	// }
+	// else
+	// {
+	// 	pthread_mutex_lock(philo->lfork);
+	// 	print_report(philo,"has taken a fork");
+	// 	pthread_mutex_lock(philo->rfork);
+	// 	print_report(philo,"has taken a fork");
+	// }
+}
+
+void	fork_down(t_philo *philo)
+{
+	// if ((philo->id) % 2 == 0)
+	// {
+		pthread_mutex_unlock(philo->rfork);
+		pthread_mutex_unlock(philo->lfork);
+
+	// }
+	// else
+	// {
+	// 	pthread_mutex_unlock(philo->rfork);
+	// 	pthread_mutex_unlock(philo->lfork);
+	// }
 }

@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:47:01 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/06/29 14:25:42 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/11/18 00:01:06 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,9 @@ long	ft_atol(const char *nptr)
 		i++;
 	}
 	return (ans * pos);
+}
+
+long		diff_time(int x, int y)
+{
+	return (y - x);
 }
