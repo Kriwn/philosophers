@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:04:41 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/11/18 00:34:37 by krwongwa         ###   ########.fr       */
+/*   Updated: 2025/01/02 16:39:55 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	init_philo(t_program *data)
 		else if (i == data->max_philo - 1)
 			data->philo[i].lfork = &data->fork[0];
 		else
-			data->philo[i].lfork = &data->fork[i+1];
+			data->philo[i].lfork = &data->fork[i + 1];
 		i++;
 	}
 }
@@ -57,7 +57,7 @@ static int	allocate_data(t_program *data)
 	return (1);
 }
 
-static void	mutex_fork(t_program *data)
+static int	mutex_fork(t_program *data)
 {
 	int	i;
 
@@ -65,20 +65,20 @@ static void	mutex_fork(t_program *data)
 	while (i < data->max_philo)
 	{
 		if (pthread_mutex_init(&data->fork[i], NULL) != 0)
-			ft_error(data, "Mutex init error\n");
+			return (ft_error(data, "Mutex init error\n"));
 		i++;
 	}
 	if (pthread_mutex_init(data->print_lock, NULL) != 0)
-			ft_error(data, "Mutex init error\n");
+		return (ft_error(data, "Mutex init error\n"));
 	if (pthread_mutex_init(data->check_die, NULL) != 0)
-			ft_error(data, "Mutex init error\n");
+		return (ft_error(data, "Mutex init error\n"));
 	if (pthread_mutex_init(data->general, NULL) != 0)
-			ft_error(data, "Mutex init error\n");
+		return (ft_error(data, "Mutex init error\n"));
+	return (1);
 }
 
-void	init_data(t_program *data,int argc,char **argv)
+int	init_data(t_program *data, int argc, char **argv)
 {
-
 	data->start_time = get_current_time();
 	data->status = 1;
 	if (data->start_time == -1)
@@ -93,6 +93,8 @@ void	init_data(t_program *data,int argc,char **argv)
 		data->max_eat = -1;
 	if (!allocate_data(data))
 		ft_error(data, "Malloc Error\n");
-	mutex_fork(data);
+	if (mutex_fork(data) == 0)
+		return (0);
 	init_philo(data);
+	return (1);
 }

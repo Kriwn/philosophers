@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 09:29:09 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/11/16 21:39:47 by krwongwa         ###   ########.fr       */
+/*   Updated: 2025/01/02 16:16:18 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 static void	check_die(t_philo	*philo)
 {
 	pthread_mutex_lock(philo->general);
-	if (diff_time(philo->last_time_eat, get_current_time()) > philo->rule->time_die)
+	if (diff_time(philo->last_time_eat,
+			get_current_time()) > philo->rule->time_die)
 	{
 		pthread_mutex_unlock(philo->general);
 		pthread_mutex_lock(philo->print_lock);
 		if (*philo->status == 1)
 		{
-			printf("%ld %d died\n", diff_time(philo->rule->start_time,get_current_time()), philo->id);
+			printf("%ld %d died\n", diff_time(philo->rule->start_time,
+					get_current_time()), philo->id);
 			set_status(philo, 0);
 		}
 		pthread_mutex_unlock(philo->print_lock);
@@ -30,7 +32,7 @@ static void	check_die(t_philo	*philo)
 		pthread_mutex_unlock(philo->general);
 }
 
-void		check_philo_die(t_program *data)
+void	check_philo_die(t_program *data)
 {
 	int	i;
 
@@ -69,5 +71,5 @@ int	check_all_philo_done(t_program *program)
 		i++;
 	}
 	pthread_mutex_unlock(program->check_die);
-	return done;
+	return (done);
 }

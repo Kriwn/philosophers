@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 19:58:25 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/11/17 23:07:50 by krwongwa         ###   ########.fr       */
+/*   Updated: 2025/01/02 16:44:14 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	freeall(t_program *data)
 		free(data->general);
 }
 
-void ft_error(t_program *data, char *str)
+int	ft_error(t_program *data, char *str)
 {
-	dprintf(2, "%s",str);
+	printf("%s", str);
 	freeall(data);
-	exit(0);
+	return (0);
 }

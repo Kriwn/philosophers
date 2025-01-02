@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:47:01 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/11/18 00:01:06 by krwongwa         ###   ########.fr       */
+/*   Updated: 2025/01/02 16:07:46 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ size_t	ft_strlen(const char *s)
 
 long	ft_atol(const char *nptr)
 {
-	long		ans;
-	long		pos;
+	long	ans;
+	long	pos;
 	char	*ptr;
 	size_t	i;
 
@@ -51,7 +51,7 @@ long	ft_atol(const char *nptr)
 	return (ans * pos);
 }
 
-long		diff_time(int x, int y)
+long	diff_time(int x, int y)
 {
 	return (y - x);
 }

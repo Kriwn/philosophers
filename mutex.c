@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 10:27:15 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/11/13 12:50:00 by krwongwa         ###   ########.fr       */
+/*   Updated: 2025/01/02 16:08:14 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	set_status(t_philo *philo, int status)
 	pthread_mutex_unlock(philo->general);
 }
 
-void	set_eat_done(t_program	*program,int status)
+void	set_eat_done(t_program	*program, int status)
 {
 	pthread_mutex_lock(program->general);
-	program->status = 0;
+	program->status = status;
 	pthread_mutex_unlock(program->general);
 }
 
-void increase_count(t_philo *philo)
+void	increase_count(t_philo *philo)
 {
 	pthread_mutex_lock(philo->general);
 	philo->count++;
