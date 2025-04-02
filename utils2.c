@@ -47,13 +47,28 @@ void	print_report(t_philo *philo, char *str)
 
 void	fork_up(t_philo *philo)
 {
-	pthread_mutex_lock(philo->lfork);
-	print_report(philo, "has taken a fork");
-	pthread_mutex_lock(philo->rfork);
+	if ((philo->id % 2) == 0)
+	{
+		pthread_mutex_lock(philo->lfork);
+		pthread_mutex_lock(philo->rfork);
+	}
+	else
+	{
+		pthread_mutex_lock(philo->rfork);
+		pthread_mutex_lock(philo->lfork);
+	}
 }
 
 void	fork_down(t_philo *philo)
 {
-	pthread_mutex_unlock(philo->rfork);
-	pthread_mutex_unlock(philo->lfork);
+	if ((philo->id % 2) == 0)
+	{
+		pthread_mutex_unlock(philo->rfork);
+		pthread_mutex_unlock(philo->lfork);
+	}
+	else
+	{
+		pthread_mutex_unlock(philo->lfork);
+		pthread_mutex_unlock(philo->rfork);
+	}
 }

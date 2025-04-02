@@ -17,6 +17,7 @@ static void	eat(t_philo *philo)
 	if (philo->count >= philo->rule->max_eat && philo->rule->max_eat != -1)
 		return ;
 	fork_up(philo);
+	print_report(philo, "has taken a fork");
 	print_report(philo, "is eating");
 	set_time(philo, get_current_time());
 	ft_sleep(philo, philo->rule->time_eat);

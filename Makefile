@@ -8,8 +8,8 @@ HEADER_FILE = push_swap.h
 
 CC = cc
 # CFLAGS = -g
-#CFLAGS = -g -fsanitize=thread
-CFLAGS = -Wall -Wextra -Werror -Wunreachable-code
+# CFLAGS = -g -fsanitize=thread
+CFLAGS = -g -Wall -Wextra -Werror -Wunreachable-code
 
 all: $(NAME)
 
